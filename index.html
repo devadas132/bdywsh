@@ -1,40 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+
+        /* --- LEFT SIDE ANIMATION --- */
+        .photo-side {
+            flex: 1;
+            background: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1974&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            overflow: hidden;
+            animation: revealImage 1.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        @keyframes revealImage {
+            0% { transform: scale(1.1); filter: brightness(0); }
+            100% { transform: scale(1); filter: brightness(1); }
+        }
+
+        /* --- RIGHT SIDE CONTENT --- */
+        .message-side {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 10%;
+            background-color: #fcfcfc;
+        }
+
+        /* Staggered text animations */
+        .animate-text {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #888;
+            margin-bottom: 20px;
+            animation-delay: 0.4s;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+            animation-delay: 0.6s;
+        }
+
+        h1 span {
+            font-style: italic;
+            font-weight: 400;
+            color: #555;
+        }
+
+        .wish-text {
+            font-size: 1.25rem;
+            line-height: 1.8;
+            color: #444;
+            max-width: 480px;
+            border-left: 3px solid #1a1a1a;
+            padding-left: 25px;
+            animation-delay: 0.8s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Mobile View */
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .photo-side { height: 45vh; width: 100%; }
+            .message-side { height: 55vh; padding: 40px 10%; }
+            h1 { font-size: 3rem; }
+        }
+    </style>
+</head>
 <body>
-    <div class="split-container">
-        <div class="image-side">
-            <img src="birthday_person.png" alt="Birthday Person" class="hero-image">
-        </div>
-        <div class="content-side">
-            <div class="content-wrapper">
-                <main>
-                    <h1 class="animate-text delay-1">Happy Birthday Sarah</h1>
-                    <div class="divider animate-width delay-2"></div>
-                    <p class="message animate-text delay-3" id="message-text">
-                        Wishing you a year filled with new adventures, meaningful moments, and great success. May your
-                        special day be as wonderful as you are.
-                    </p>
-                    <button class="btn animate-fade delay-4" id="reveal-btn">Read More</button>
-                </main>
-                <footer>
-                    <p class="animate-fade delay-5">&copy; 2026</p>
-                </footer>
+
+    <div class="container">
+        <div class="photo-side"></div>
+
+        <main class="message-side">
+            <div class="label animate-text">Celebrating Excellence</div>
+            
+            <h1 class="animate-text">Happy <br><span>Birthday.</span></h1>
+            
+            <div class="wish-text animate-text">
+                Wishing you a day of reflection and a year of unprecedented success. May you continue to lead with excellence and achieve every milestone you set your sights on.
             </div>
-        </div>
+        </main>
     </div>
 
-    <script src="script.js"></script>
 </body>
-
 </html>
